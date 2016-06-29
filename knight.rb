@@ -6,6 +6,7 @@ class knight
     @position {x: x, y: y}
   end
   
-  def knight_moves
+  def knight_moves(start, finish)
+    return route
   end
 end
