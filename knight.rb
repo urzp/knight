@@ -22,9 +22,45 @@ class Node
   end
 end
 
-
-
 def knight_moves(start, finish)
+  derections = [[2,1],[2,-1],[1,2],[1,-2],[-1,2],[-1,-2],[-2,1],[-2,-1]]
+  queue = []
+  marked = []
+  start_node = Node.new("root",start)
+  queue << start_node
+  marked << start_node
+
+  while !queue.empty?
+    node_q = queue.shift
+
+    derections.each do |derect|
+      node = Node.new( node_q.position, node_q.move(derect) )
+
+      if valid?(node, marked)
+        queue << node
+        marked << node
+      end
+
+      if node.position == finish
+        return back_trak(node, marked)
+      end
+    end
+
+  end
+
+end
+
+def back_trak(node, marked)
+  route = []
+  while node.parent != "root"
+    marked.each do |bak_node|
+      if node.parent == bak_node.position
+        route << node
+        node = bak_node
+        break
+      end
+    end
+  end
   return route
 end
 
@@ -47,10 +83,8 @@ def knight_allmoves(start)
         marked << node
       end
     end
-
   end
-   return marked
-
+  return marked
 end
 
 def valid?(node, marked)
@@ -59,14 +93,18 @@ def valid?(node, marked)
   end
 end
 
-all_m = knight_allmoves([0,0])
 
-all_m.each do |node|
+
+
+
+route = knight_moves([3,3],[8,8])
+
+route.each do |node|
   print "parent = #{node.parent} positin = #{node.position}"
   puts
 end
 
-puts all_m.size
+puts route.size
 
 #---------------------------------------------- tools
 #n = Node.new("root", [3,3])
