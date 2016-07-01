@@ -61,7 +61,7 @@ def back_trak(node, marked)
       end
     end
   end
-  return route
+  return route.reverse
 end
 
 def knight_allmoves(start)
@@ -88,7 +88,7 @@ def knight_allmoves(start)
 end
 
 def valid?(node, marked)
-  if node.pos_x.between?(0,8) and node.pos_y.between?(0,8)
+  if node.pos_x.between?(1,8) and node.pos_y.between?(1,8)
     return true if marked.all?{ |node_m| node_m.position != node.position }
   end
 end
@@ -97,10 +97,10 @@ end
 
 
 
-route = knight_moves([3,3],[8,8])
+route = knight_moves([1,1],[8,8])
 
 route.each do |node|
-  print "parent = #{node.parent} positin = #{node.position}"
+  print " #{node.parent} ==> #{node.position}"
   puts
 end
 
