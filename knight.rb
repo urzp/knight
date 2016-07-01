@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 
 class Node
   attr_accessor :position, :parent
@@ -113,4 +112,3 @@ puts route.size
 
 #print "marked= #{marked}"
 #puts
->>>>>>> origin/try_to_marege
